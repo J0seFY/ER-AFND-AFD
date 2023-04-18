@@ -1,0 +1,15 @@
+digraph finite_state_machine {
+fontname="Helvetica,Arial,sans-serif"
+node [fontname="Helvetica,Arial,sans-serif"]
+edge [fontname="Helvetica,Arial,sans-serif"]
+rankdir=LR;
+node [shape = doublecircle];"5";
+node [shape = circle]; "0""1""2""3""4""5";
+"0" -> "1" [label = "a"]
+"1" -> "2" [label = "eps"]
+"2" -> "3" [label = "eps"]
+"2" -> "5" [label = "eps"]
+"3" -> "4" [label = "b"]
+"4" -> "3" [label = "eps"]
+"4" -> "5" [label = "eps"]
+}

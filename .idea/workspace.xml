@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2e951683-57f5-47be-9bf3-41fc6f636df6" name="Changes" comment="se agrega clase automata y estados">
-      <change afterPath="$PROJECT_DIR$/src/AFND.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Estado.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ProcessBuilderDemo.java" afterDir="false" />
+    <list default="true" id="2e951683-57f5-47be-9bf3-41fc6f636df6" name="Changes" comment="se agrega clase AFND cuya funcion es generar un AFND a partir de una ER">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Automata.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Automata.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Estado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Estado.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -84,7 +81,7 @@
       <workItem from="1681355236669" duration="3123000" />
       <workItem from="1681830057598" duration="2311000" />
       <workItem from="1681841609235" duration="1838000" />
-      <workItem from="1681853322395" duration="3746000" />
+      <workItem from="1681853322395" duration="6874000" />
     </task>
     <task id="LOCAL-00001" summary="se agrega clase automata y estados">
       <created>1681830803231</created>
@@ -93,7 +90,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681830803231</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="se agrega clase AFND cuya funcion es generar un AFND a partir de una ER">
+      <created>1681857326616</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1681857326616</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -112,6 +116,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="se agrega clase automata y estados" />
-    <option name="LAST_COMMIT_MESSAGE" value="se agrega clase automata y estados" />
+    <MESSAGE value="se agrega clase AFND cuya funcion es generar un AFND a partir de una ER" />
+    <option name="LAST_COMMIT_MESSAGE" value="se agrega clase AFND cuya funcion es generar un AFND a partir de una ER" />
   </component>
 </project>

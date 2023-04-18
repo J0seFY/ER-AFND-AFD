@@ -21,7 +21,7 @@ public class Estado{
 
     public void addTransicion(char caracter, Estado estadoNuevo){
 
-        if(transiciones.containsKey(caracter)){
+        if(transiciones.containsKey(caracter) == false){
 
             ArrayList<Estado> estados = new ArrayList<>();
             estados.add(estadoNuevo);
