@@ -1,9 +1,11 @@
+import java.io.File;
 import java.io.IOException;
 public class ProcessBuilderDemo {
     public static void main(String[] args) throws IOException, InterruptedException {
 // linea de comando para crear el diagrama
         String[] list = {"cmd.exe", "/c", "dot -Tjpg automata.dot > dfa.jpg"};
         var processBuilder = new ProcessBuilder();
+        processBuilder.directory(new File("C:\\Users\\josei\\IdeaProjects\\Tarea 1 fundamentos de la ciencias de la computacion\\src"));
         processBuilder.command(list);
         try {
             var process = processBuilder.start();
