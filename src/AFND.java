@@ -102,7 +102,7 @@ public class AFND {
 
         //se agrega la transicion vacia desde el estado final de ambos automatas hasta el estado final
         automata1.estadosFinales.get(0).addTransicion(' ',estadoFinal);
-        automata1.estadosFinales.get(0).addTransicion(' ',estadoFinal);
+        automata2.estadosFinales.get(0).addTransicion(' ',estadoFinal);
 
         //se comienza a llenar el automata union con los estados, partiendo por el incial, continuando con los estados del automata 1,automata 2 y estado final
         automataUnion.addEstado(estadoInicial);
