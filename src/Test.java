@@ -8,18 +8,24 @@ import java.util.Scanner;
 public class Test {
 
     public static void main(String[] args) {
-
+        System.out.println("Ingrese la expresion regular: ");
         Scanner sc = new Scanner(System.in);
         String expresionRegular = sc.next();
+        // Crea la variable expresionPrcesada que es la expresion regular procesada es
+        // enviada a ProcvesadorER
         ProcesadorER expresionProcesada = new ProcesadorER(expresionRegular);
         AFND transformarER_AFND = new AFND(expresionProcesada.getExpresionProcesada());
         Automata afnd = transformarER_AFND.automata;
         writeDot(afnd);
+
+        Automata afd = AFD.getInstance().getAutomata();
+        AFD.writeDot(afd);
+
     }
 
-
     public static void writeDot(Automata automata) {
-        try (BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("src\\automata.dot")))) {
+        try (BufferedWriter out = new BufferedWriter(
+                new OutputStreamWriter(new FileOutputStream("src\\automata1.dot")))) {
             // Escribir las primeras líneas del archivo
             out.write("digraph finite_state_machine {");
             out.newLine();
@@ -35,7 +41,7 @@ public class Test {
             // Escribir las definiciones de los nodos
             out.write("node [shape = doublecircle];");
             for (Estado estado : automata.estadosFinales) {
-                out.write(" \""+estado.identificador+"\" ");
+                out.write(" \"" + estado.identificador + "\" ");
             }
             out.write(";");
             out.newLine();
@@ -48,13 +54,13 @@ public class Test {
 
             // Escribir las definiciones de las aristas
             for (Estado estado1 : automata.estados) {
-                for (Character clave : estado1.transiciones.keySet()){
+                for (Character clave : estado1.transiciones.keySet()) {
                     ArrayList<Estado> valores = estado1.transiciones.get(clave);
-                    for (Estado estado2 : valores){
-                        out.write("\"" + estado1.identificador + "\" -> \"" + estado2.identificador+ "\"");
-                        if (clave == ' '){
+                    for (Estado estado2 : valores) {
+                        out.write("\"" + estado1.identificador + "\" -> \"" + estado2.identificador + "\"");
+                        if (clave == ' ') {
                             out.write(" [label = \"" + "eps" + "\"];");
-                        }else {
+                        } else {
                             out.write(" [label = \"" + clave + "\"];");
                         }
                         out.newLine();

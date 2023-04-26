@@ -3,13 +3,13 @@ import java.util.Stack;
 
 public class ProcesadorER {
 
-    //esta clase procesa la expresion y la convierte en una expresion postfija para que sea mas facil de operar
+    // esta clase procesa la expresion y la convierte en una expresion postfija para
+    // que sea mas facil de operar
 
     String expresionProcesada;
 
     public ProcesadorER(String expresion) {
         expresionProcesada = convertirExpresion(expresion);
-
     }
 
     private String convertirExpresion(String expresion) {
@@ -17,7 +17,7 @@ public class ProcesadorER {
         String postfijada = "";
         Stack<Character> pila = new Stack<>();
 
-        for(char caracter: expresion.toCharArray()) {
+        for (char caracter : expresion.toCharArray()) {
             if (Character.isLetterOrDigit(caracter)) {
                 postfijada += caracter;
             } else if (caracter == '(') {
@@ -34,26 +34,23 @@ public class ProcesadorER {
                 pila.push(caracter);
             }
         }
-        while (!pila.isEmpty()){
-            postfijada +=pila.pop();
+        while (!pila.isEmpty()) {
+            postfijada += pila.pop();
         }
 
         return postfijada;
     }
 
+    private int precedencia(char caracter) {
 
-    private int precedencia(char caracter){
-
-        HashMap<Character,Integer> precedencia = new HashMap<>();
-        precedencia.put('(',1);
-        precedencia.put('|',2);
-        precedencia.put('.',3);
-        precedencia.put('*',4);
+        HashMap<Character, Integer> precedencia = new HashMap<>();
+        precedencia.put('(', 1);
+        precedencia.put('|', 2);
+        precedencia.put('.', 3);
+        precedencia.put('*', 4);
 
         return precedencia.get(caracter);
     }
-
-
 
     public String getExpresionProcesada() {
         return expresionProcesada;

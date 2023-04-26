@@ -1,11 +1,12 @@
 import java.util.ArrayList;
-import java.util.HashMap;
+//import java.util.HashMap;
 
 public class Automata {
 
     Estado inicio;
     ArrayList<Estado> estados;
     ArrayList<Estado> estadosFinales;
+    public Estado[] estado;
 
     public Automata() {
         estados = new ArrayList<>();
@@ -16,12 +17,11 @@ public class Automata {
         this.inicio = inicio;
     }
 
-    public void addEstado(Estado estado){
+    public void addEstado(Estado estado) {
         estados.add(estado);
     }
 
-    public void addEstadoFinal(Estado estado){
+    public void addEstadoFinal(Estado estado) {
         estadosFinales.add(estado);
     }
 }
-
