@@ -12,16 +12,15 @@ public class ProcessBuilderDemo2 {
         return instance;
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public void main(String[] args) throws IOException, InterruptedException {
         make();
     }
 
-    public static void make() {
+    public  void make() {
         // linea de comando para crear el diagrama
         String[] list = { "cmd.exe", "/c", "dot -Tjpg automata2.dot > dfa2.jpg" };
         var processBuilder = new ProcessBuilder();
-        processBuilder.directory(new File(
-                "C:\\Users\\Usuario\\IdeaProjects\\ER-AFND-AFD\\src"));
+
         processBuilder.command(list);
         try {
             var process = processBuilder.start();

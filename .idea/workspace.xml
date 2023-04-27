@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba87c5fa-fb2c-40ca-a43a-1a6c7edabffb" name="Changes" comment="se agrega writeDot para la generacion de archivo .dot">
+    <list default="true" id="ba87c5fa-fb2c-40ca-a43a-1a6c7edabffb" name="Changes" comment="modificación ProcessBuilderDemo y ProcessBuilderDemo2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AFD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AFD.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AFND.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AFND.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Automata.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Automata.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Estado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Estado.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ProcessBuilderDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessBuilderDemo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ProcessBuilderDemo2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessBuilderDemo2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
@@ -25,6 +29,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -33,6 +45,12 @@
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -55,6 +73,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ProcessBuilderDemo2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ProcessBuilderDemo2" />
+      <module name="Tarea 1 fundamentos de la ciencias de la computacion" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Test" />
       <module name="Tarea 1 fundamentos de la ciencias de la computacion" />
@@ -66,10 +91,12 @@
       <item itemvalue="Application.ExpresionRegular" />
       <item itemvalue="Application.ProcessBuilderDemo" />
       <item itemvalue="Application.Test" />
+      <item itemvalue="Application.ProcessBuilderDemo2" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Test" />
+        <item itemvalue="Application.ProcessBuilderDemo2" />
         <item itemvalue="Application.ProcessBuilderDemo" />
         <item itemvalue="Application.ExpresionRegular" />
       </list>
@@ -78,7 +105,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="2e951683-57f5-47be-9bf3-41fc6f636df6" name="Changes" comment="" />
+      <changelist id="ba87c5fa-fb2c-40ca-a43a-1a6c7edabffb" name="Changes" comment="modificación ProcessBuilderDemo y ProcessBuilderDemo2" />
       <created>1681179923466</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -90,6 +117,7 @@
       <workItem from="1681841609235" duration="1838000" />
       <workItem from="1681853322395" duration="10086000" />
       <workItem from="1681954941179" duration="711000" />
+      <workItem from="1682627432688" duration="942000" />
     </task>
     <task id="LOCAL-00001" summary="se agrega clase automata y estados">
       <created>1681830803231</created>
@@ -126,7 +154,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681864803727</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="modificación ProcessBuilderDemo y ProcessBuilderDemo2">
+      <created>1682617371427</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1682617371427</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,6 +183,7 @@
     <MESSAGE value="se agrega clase automata y estados" />
     <MESSAGE value="se agrega clase AFND cuya funcion es generar un AFND a partir de una ER" />
     <MESSAGE value="se agrega writeDot para la generacion de archivo .dot" />
-    <option name="LAST_COMMIT_MESSAGE" value="se agrega writeDot para la generacion de archivo .dot" />
+    <MESSAGE value="modificación ProcessBuilderDemo y ProcessBuilderDemo2" />
+    <option name="LAST_COMMIT_MESSAGE" value="modificación ProcessBuilderDemo y ProcessBuilderDemo2" />
   </component>
 </project>

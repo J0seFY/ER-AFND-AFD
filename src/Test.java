@@ -19,13 +19,6 @@ public class Test {
 
         AFD transformarAFND_AFD = new AFD(afnd,expresionProcesada.lenguaje);
 
-        Automata afd = transformarAFND_AFD.getAutomata();
-
-        for (Estado estado : afd.estados){
-            System.out.println(estado.identificador);
-        }
-
-
         ProcessBuilderDemo.getInstance().make();
         System.out.println("");
         ProcessBuilderDemo2.getInstance().make();

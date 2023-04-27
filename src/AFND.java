@@ -212,7 +212,7 @@ public class AFND {
 
     private void writeDot(Automata automata) {
         try (BufferedWriter out = new BufferedWriter(
-                new OutputStreamWriter(new FileOutputStream("src\\automata1.dot")))) {
+                new OutputStreamWriter(new FileOutputStream("automata1.dot")))) {
             // Escribir las primeras líneas del archivo
             out.write("digraph finite_state_machine {");
             out.newLine();

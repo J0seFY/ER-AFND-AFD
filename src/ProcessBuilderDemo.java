@@ -19,7 +19,7 @@ public class ProcessBuilderDemo {
     public void make() {
         String[] list = {"cmd.exe", "/c", "dot -Tjpg automata1.dot > dfa.jpg"};
         var processBuilder = new ProcessBuilder();
-        processBuilder.directory(new File("C:\\Users\\Usuario\\IdeaProjects\\ER-AFND-AFD\\src"));
+
         processBuilder.command(list);
         try {
             var process = processBuilder.start();

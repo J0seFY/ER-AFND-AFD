@@ -6,7 +6,6 @@ public class Automata {
     Estado inicio;
     ArrayList<Estado> estados;
     ArrayList<Estado> estadosFinales;
-    public Estado[] estado;
 
     public Automata() {
         estados = new ArrayList<>();

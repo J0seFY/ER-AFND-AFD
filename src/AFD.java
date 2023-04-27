@@ -1,16 +1,3 @@
-/* PASOS PARA CONVERTIR AFND -> AFD
- *                              |           Lenguaje
- * 1. identificar sus elementos | Estado    0         1 
- *                              |    a     {a}      {a,b}
- *                              |  {a,b}   {a,c,d}  {a,b,c}
- * 2. dibujar el priumer estaod de la primera columna
- * 3. todos los estados de su transicion con el lenguaje
- * 4. dibujar el estado siguiente de la primera columna asi como sus estados de transicion
- * 5. si el estado de la trasicion ya existe no se dibuja, solo se hace una transicion
- * 6. todos los finales se unen, asi mismo si se une algun estado no final a uno final ahora sera final.
- */
-
-import java.util.Collections;
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -20,180 +7,199 @@ import java.util.Stack;
 
 public class AFD {
 
-    // Estados
-    Estado estado, Inicial, Final;
-    // Arrays
-    ArrayList<Estado> Lista;
-    ArrayList<String> Lenguaje, Iniciales, Finales;
-    // Automatas
-    Automata afd;
-    // Pilas
-    Stack<Estado> estadoPila;
+    Estado estado;
 
+    ArrayList<Estado> listaEstados;
+    ArrayList<String> alfabeto;
+    ArrayList<String> inicios;
+    ArrayList<String> finales;
+    Automata afnd;
+    Stack<Estado> pila_estados;
+    Estado estado_inicial;
+    Estado sumidero;
 
-    public AFD(Automata automata, ArrayList<String> leng) {
+    public AFD(Automata automata, ArrayList<String> alfabeto) {
 
-        this.Lista = new ArrayList<>();
-        this.Iniciales = new ArrayList<>();
-        this.Finales = new ArrayList<>();
-        this.estadoPila = new Stack<>();
-        this.Lenguaje = leng;
-        this.afd = automata;
+        this.listaEstados = new ArrayList();
+        this.alfabeto = alfabeto;
+        this.inicios = new ArrayList();
+        this.finales = new ArrayList();
+        this.pila_estados = new Stack();
 
-        // obtenemos los estados desde 0 con transiciones eps.
-        estadosEps(afd.inicio);
+        this.afnd = automata;
+        //Se obtienen todos los estados a los que se puede llegar desde el estado 0
+        //usando solo transiciones epsilon
+        obtener_eclosure();
 
-        Inicial = new Estado(0, true, false); // define el estado inicial
-        Final = new Estado(-1, false, false); // define el estado final
+        //se crea el estado inicial para el afd y un estado sumidero
+        estado_inicial = new Estado(0, true, false);
+        sumidero = new Estado(1, false, false);
 
-        // agregar ciclos
-        for (String i : this.Lenguaje) {
-            Final.addTransicion(i.charAt(0), Final);
+        //se agregan los ciclos correspondientes al sumidero
+        for(String string: this.alfabeto){
+            sumidero.addTransicion(string.charAt(0), sumidero);
         }
 
-        Inicial.estados.addAll(estadoPila);
+        estado_inicial.estados.addAll(pila_estados);
+        pila_estados.clear();
 
-        String nombre = "";
+        //se agregan los estados creados prevamente a la lista de estados que representara nuestro AFD
+        this.listaEstados.add(estado_inicial);
+        this.listaEstados.add(sumidero);
 
-        ArrayList<String> EstadosIniciales = new ArrayList<>();
+        //se agrega el estado inicial a la pila de la cual obtendremos los estados
+        //necesarios para calcular los nuevos estados del AFD
+        this.pila_estados.push(estado_inicial);
 
-        for (int i = 0; i < EstadosIniciales.size(); i++) {
-            EstadosIniciales.add(Inicial.estados.get(i).idString);
+
+        while(this.pila_estados.empty() != true){
+            this.generar_estados_afd(this.pila_estados.pop());
         }
 
-        Collections.sort(EstadosIniciales);
+        //se modifican los id de cada estado creado, para que
+        //la funcion delta que se imprimira sea mas entendible.
+        for(int i = 0; i< listaEstados.size(); i++){
+            listaEstados.get(i).identificador = i;
+        }
 
-        for (int i = 0; i < EstadosIniciales.size(); i++) {
-            if (i == EstadosIniciales.size() - 1) {
-                nombre = nombre + EstadosIniciales.get(i);
-            } else {
-                nombre = nombre + EstadosIniciales.get(i) + ",";
+        imprimir_afd();
+        writeDot();
+    }
+
+    //imprime de manera estandar el AFD
+    void imprimir_afd(){
+        System.out.println("");
+        System.out.println("AFD");
+        System.out.printf("K = { ");
+        for(int i=0;i<this.listaEstados.size();i++){
+            if(this.listaEstados.size()-1 == i){
+                System.out.printf("q"+listaEstados.get(i).identificador);
+            }else{
+                System.out.printf("q"+listaEstados.get(i).identificador+" ,");
             }
         }
-
-        Inicial.idString = nombre;
-        estadoPila.clear();
-
-        // agregar estados a la lista de estados para AFD
-        this.Lista.add(Inicial);
-        this.Lista.add(Final);
-
-        // agregar estado inicial a al pula para calcular nuevos estados
-        this.estadoPila.push(Inicial);
-
-        while (this.estadoPila.empty() != true) {
-            this.ConvertirAutomata(this.estadoPila.pop());
+        System.out.printf(" }");
+        System.out.println(" ");
+        System.out.printf("Sigma = [");
+        for(int n=0;n<this.alfabeto.size();n++){
+            if(this.alfabeto.size()-1 == n){
+                System.out.println(this.alfabeto.get(n) + "]");
+            }else{
+                System.out.printf(this.alfabeto.get(n) + ", ");
+            }
         }
+        System.out.println("Delta :");
 
-        writeDot(this.afd);
-    }
-    // Funciones a utilizar
-
-    // Permite obtener los estados de 0 con transiciones eps
-    public void estadosEps(Estado estado) {
-        if (estadoPila.contains(estado) == false) {
-            this.estadoPila.push(estado);
-            if (estado.transiciones.get("eps") != null) {
-                for (Estado i : estado.transiciones.get("eps")) {
-                    estadosEps(i);
+        for(Estado estado: this.listaEstados){
+            estado.imprimir_transiciones();
+        }
+        System.out.println("s = { q" + this.estado_inicial.identificador + " }");
+        System.out.printf("F = { ");
+        for(int i=0;i<this.listaEstados.size();i++){
+            if(this.listaEstados.get(i).fin){
+                if(this.listaEstados.size()-1 == i){
+                    System.out.printf("q" + this.listaEstados.get(i).identificador);
+                }else{
+                    System.out.printf("q" + this.listaEstados.get(i).identificador + ",");
                 }
             }
         }
+        System.out.printf(" }");
+        System.out.println("");
     }
 
-    // Convertir AFD a AFD por creacion de estados
-    public void ConvertirAutomata(Estado estado) {
-        for (String i : this.Lenguaje) {
-            ArrayList<Estado> conexion = new ArrayList<Estado>();
-            ArrayList<String> identificadores = new ArrayList<>();
+    //convierte las transiciones de un estado a los estados y transiciones que
+    //se utilizaran para armar el AFD.
+    void generar_estados_afd(Estado estado){
+        for(String string : this.alfabeto){
+            ArrayList<Estado> transiciones =  new ArrayList<Estado>();
 
-            // obtener estados a los que accede el elemento del string y las transiciones
-            // eps
-
-            for (Estado j : estado.estados) {
-                if (j.transiciones.containsKey(i) == true) {
-                    for (Estado extra : j.transiciones.get(i)) {
-                        getConexiones(extra, conexion, identificadores);
+            //se obtienen todos los estados a los que accede un
+            //estado especifico usando una letra del alfabeto y
+            //transiciones epsilon.
+            for(Estado s : estado.estados ){
+                if(s.transiciones.containsKey(string.charAt(0)) == true){
+                    for(Estado aux: s.transiciones.get(string.charAt(0))){
+                        obtener_transiciones_estado(aux, transiciones);
                     }
                 }
             }
 
-            Collections.sort(identificadores);
-            String nombre = "";
+            //si el estado tiene transiciones con el caracter especificado
+            //se agrega a la lista de estados del AFD y a la pila para que se generen
+            // nuevos estados y trancisiones a traves de este nuevo estado.
+            if(transiciones.isEmpty() == false){
+                Estado nuevo_estado = new Estado(0, false, false);
+                nuevo_estado.estados.addAll(transiciones);
 
-            if (identificadores.isEmpty() == false) {
-                for (int k = 0; k < identificadores.size(); k++) {
-                    if (k == identificadores.size() - 1) {
-                        nombre = nombre + identificadores.get(k);
-                    } else {
-                        nombre = nombre + identificadores.get(k) + ",";
-                    }
-                }
-            }
+                estado.addTransicion(string.charAt(0), nuevo_estado);
 
-            // se organizan las conexinoes entre estados
-            if (conexion.isEmpty() == false) {
-                Estado nuevo = new Estado(Integer.parseInt(nombre), false, false);
-                nuevo.estados.addAll(conexion);
+                nuevo_estado.verificar_estado_final();
 
-                estado.addTransicion(i.charAt(0), nuevo);
-
-                if (existeEstado(nuevo) == false) {
-                    this.Lista.add(nuevo);
-                    this.estadoPila.push(nuevo);
+                if(verificar_existencia_estado(nuevo_estado) == false){
+                    this.listaEstados.add(nuevo_estado);
+                    this.pila_estados.push(nuevo_estado);
                 }
 
-                conexion.clear();
-                identificadores.clear();
-            } else {
-                estado.addTransicion(i.charAt(0), this.Final);
+                transiciones.clear();
             }
-
+            else{
+                //si el estado no tiene transiciones con algun caracter del alfabeto
+                // entonces se le agregan transiciones a un estado sumidero usando
+                //el caracter especificado.
+                estado.addTransicion(string.charAt(0), this.sumidero);
+            }
         }
     }
 
-    public void getConexiones(Estado extra, ArrayList<Estado> conexion, ArrayList<String> identificadores) {
-        if (conexion.contains(extra) == false) {
-            conexion.add(extra);
-            identificadores.add(extra.idString);
+    //obtiene todas las transiciones epsilon de un estado especifico y las almacena en
+    //un arraylist que contiene todos los estados que componen un estado del AFD
+    void obtener_transiciones_estado(Estado estado, ArrayList<Estado> transiciones){
+        if(transiciones.contains(estado) == false){
+            transiciones.add(estado);
 
-            if (extra.transiciones.containsKey("eps") == true) {
-                for (Estado i : extra.transiciones.get("eps")) {
-                    getConexiones(i, conexion, identificadores);
+            if(estado.transiciones.containsKey(' ') == true){
+                for(Estado s : estado.transiciones.get(' ')){
+                    obtener_transiciones_estado(s, transiciones);
                 }
             }
         }
     }
 
-    public boolean existeEstado(Estado estado) {
-        for (Estado est : this.Lista) {
-            if (est.idString.equals(estado.idString)) {
+    //verifica si es que ya se ha analizado un estado previamente y se agrega
+    // a la lista de estados en caso de que no se haya analizado
+    boolean verificar_existencia_estado(Estado estado){
+        for(Estado s: this.listaEstados){
+            if(s.estados.containsAll(estado.estados) == true){
                 return true;
             }
         }
+
         return false;
     }
 
-    public void makePic() {
-        String[] list = { "cmd.exe", "/c", "dot -Tjpg automata2.dot > dfa.jpg" };
+    void obtener_eclosure(){
+        transicion_epsilon(afnd.inicio);
+    }
 
-        try {
-            ProcessBuilder proceso = new ProcessBuilder();
-            proceso.command(list);
-            proceso.start();
-        } catch (Exception e) {
-            e.printStackTrace();
+    //funcion que obtiene los estados a los que se puede llegar desde el estado 0
+    //usando solo transiciones epsilon
+    void transicion_epsilon(Estado estado){
+
+        if(pila_estados.contains(estado) == false){
+            this.pila_estados.push(estado);
+
+            if(estado.transiciones.get(' ') != null){
+                for(Estado s: estado.transiciones.get('_')){
+                    transicion_epsilon(s);
+                }
+            }
         }
     }
 
-
-    public Automata getAutomata() {
-        return afd;
-    }
-
-    private void writeDot(Automata automata) {
+    private void writeDot() {
         try (BufferedWriter out = new BufferedWriter(
-                new OutputStreamWriter(new FileOutputStream("src\\automata2.dot")))) {
+                new OutputStreamWriter(new FileOutputStream("automata2.dot")))) {
             // Escribir las primeras líneas del archivo
             out.write("digraph finite_state_machine {");
             out.newLine();
@@ -208,20 +214,24 @@ public class AFD {
 
             // Escribir las definiciones de los nodos
             out.write("node [shape = doublecircle];");
-            for (Estado estado : automata.estadosFinales) {
-                out.write(" \"" + estado.identificador + "\" ");
+            for (int i=0;i<this.listaEstados.size();i++) {
+                if(this.listaEstados.get(i).fin){
+                    out.write(" \"" + this.listaEstados.get(i).identificador + "\" ");
+                }
             }
             out.write(";");
             out.newLine();
             out.write("node [shape = circle]; ");
-            for (Estado estado : automata.estados) {
-                out.write("\"" + estado.identificador + "\"");
+
+            for (int i=0;i<this.listaEstados.size();i++) {
+                out.write(" \"" + this.listaEstados.get(i).identificador + "\" ");
             }
+
             out.write(";");
             out.newLine();
 
             // Escribir las definiciones de las aristas
-            for (Estado estado1 : automata.estados) {
+            for (Estado estado1 : listaEstados) {
                 for (Character clave : estado1.transiciones.keySet()) {
                     ArrayList<Estado> valores = estado1.transiciones.get(clave);
                     for (Estado estado2 : valores) {
@@ -240,6 +250,5 @@ public class AFD {
         }
     }
 
+    //problema al realizar la ultima transicion
 }
-
-
