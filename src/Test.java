@@ -26,6 +26,11 @@ public class Test {
         }
 
 
+        ProcessBuilderDemo.getInstance().make();
+        System.out.println("");
+        ProcessBuilderDemo2.getInstance().make();
+
+
     }
 
 }
