@@ -30,18 +30,6 @@ public class AFD {
     // Pilas
     Stack<Estado> estadoPila;
 
-    // instancia
-    private static AFD instance = null;
-
-    public static AFD getInstance() {
-        if (instance == null) {
-            instance = new AFD();
-        }
-        return instance;
-    }
-
-    public AFD() {
-    }
 
     public AFD(Automata automata, ArrayList<String> leng) {
 
@@ -56,7 +44,7 @@ public class AFD {
         estadosEps(afd.inicio);
 
         Inicial = new Estado(0, true, false); // define el estado inicial
-        Final = new Estado(Integer.parseInt("vacio"), false, false); // define el estado final
+        Final = new Estado(-1, false, false); // define el estado final
 
         // agregar ciclos
         for (String i : this.Lenguaje) {
@@ -97,6 +85,7 @@ public class AFD {
             this.ConvertirAutomata(this.estadoPila.pop());
         }
 
+        writeDot(this.afd);
     }
     // Funciones a utilizar
 
@@ -197,7 +186,12 @@ public class AFD {
         }
     }
 
-    public static void writeDot(Automata automata) {
+
+    public Automata getAutomata() {
+        return afd;
+    }
+
+    private void writeDot(Automata automata) {
         try (BufferedWriter out = new BufferedWriter(
                 new OutputStreamWriter(new FileOutputStream("src\\automata2.dot")))) {
             // Escribir las primeras líneas del archivo
@@ -232,11 +226,8 @@ public class AFD {
                     ArrayList<Estado> valores = estado1.transiciones.get(clave);
                     for (Estado estado2 : valores) {
                         out.write("\"" + estado1.identificador + "\" -> \"" + estado2.identificador + "\"");
-                        if (clave == ' ') {
-                            out.write(" [label = \"" + "eps" + "\"];");
-                        } else {
-                            out.write(" [label = \"" + clave + "\"];");
-                        }
+                        out.write(" [label = \"" + clave + "\"];");
+
                         out.newLine();
                     }
                 }
@@ -249,8 +240,6 @@ public class AFD {
         }
     }
 
-    public Automata getAutomata() {
-        return afd;
-    }
-
 }
+
+

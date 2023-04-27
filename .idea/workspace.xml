@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2e951683-57f5-47be-9bf3-41fc6f636df6" name="Changes" comment="se agrega writeDot para la generacion de archivo .dot">
+    <list default="true" id="2e951683-57f5-47be-9bf3-41fc6f636df6" name="Changes" comment="se soluciona problema en la union y se implementa ProcessBuilderDemo para generar la imagen">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AFD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AFD.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AFND.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AFND.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProcesadorER.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcesadorER.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ProcessBuilderDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessBuilderDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/automata.dot" beforeDir="false" afterPath="$PROJECT_DIR$/src/automata.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dfa.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/dfa.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProcessBuilderDemo2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessBuilderDemo2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +56,7 @@
       <recent name="C:\Users\josei\IdeaProjects\Tarea 1 fundamentos de la ciencias de la computacion" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ProcessBuilderDemo">
+  <component name="RunManager" selected="Application.ProcessBuilderDemo2">
     <configuration name="ExpresionRegular" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ExpresionRegular" />
       <module name="Tarea 1 fundamentos de la ciencias de la computacion" />
@@ -69,6 +71,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ProcessBuilderDemo2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ProcessBuilderDemo2" />
+      <module name="Tarea 1 fundamentos de la ciencias de la computacion" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Test" />
       <module name="Tarea 1 fundamentos de la ciencias de la computacion" />
@@ -78,6 +87,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ProcessBuilderDemo2" />
         <item itemvalue="Application.ProcessBuilderDemo" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Application.ExpresionRegular" />
@@ -99,6 +109,9 @@
       <workItem from="1681841609235" duration="1838000" />
       <workItem from="1681853322395" duration="10086000" />
       <workItem from="1681954941179" duration="711000" />
+      <workItem from="1681956033568" duration="2350000" />
+      <workItem from="1682358390434" duration="4470000" />
+      <workItem from="1682550184495" duration="3360000" />
     </task>
     <task id="LOCAL-00001" summary="se agrega clase automata y estados">
       <created>1681830803231</created>
@@ -135,7 +148,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681864803727</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="se soluciona problema en la union y se implementa ProcessBuilderDemo para generar la imagen">
+      <created>1681956470455</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1681956470455</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -156,6 +176,7 @@
     <MESSAGE value="se agrega clase automata y estados" />
     <MESSAGE value="se agrega clase AFND cuya funcion es generar un AFND a partir de una ER" />
     <MESSAGE value="se agrega writeDot para la generacion de archivo .dot" />
-    <option name="LAST_COMMIT_MESSAGE" value="se agrega writeDot para la generacion de archivo .dot" />
+    <MESSAGE value="se soluciona problema en la union y se implementa ProcessBuilderDemo para generar la imagen" />
+    <option name="LAST_COMMIT_MESSAGE" value="se soluciona problema en la union y se implementa ProcessBuilderDemo para generar la imagen" />
   </component>
 </project>

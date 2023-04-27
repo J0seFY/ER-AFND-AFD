@@ -1,3 +1,8 @@
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 import java.util.Stack;
 
 //import javax.swing.text.Position;
@@ -23,6 +28,7 @@ public class AFND {
     public AFND(String expresionRegular) {
         this.expresionRegular = expresionRegular;
         this.generarAutomata();
+        writeDot(this.automata);
     }
 
     public void generarAutomata() {
@@ -202,5 +208,57 @@ public class AFND {
 
         stack.push(automataBasico);
 
+    }
+
+    private void writeDot(Automata automata) {
+        try (BufferedWriter out = new BufferedWriter(
+                new OutputStreamWriter(new FileOutputStream("src\\automata1.dot")))) {
+            // Escribir las primeras líneas del archivo
+            out.write("digraph finite_state_machine {");
+            out.newLine();
+            out.write("fontname=\"Helvetica,Arial,sans-serif\"");
+            out.newLine();
+            out.write("node [fontname=\"Helvetica,Arial,sans-serif\"]");
+            out.newLine();
+            out.write("edge [fontname=\"Helvetica,Arial,sans-serif\"]");
+            out.newLine();
+            out.write("rankdir=LR;");
+            out.newLine();
+
+            // Escribir las definiciones de los nodos
+            out.write("node [shape = doublecircle];");
+            for (Estado estado : automata.estadosFinales) {
+                out.write(" \"" + estado.identificador + "\" ");
+            }
+            out.write(";");
+            out.newLine();
+            out.write("node [shape = circle]; ");
+            for (Estado estado : automata.estados) {
+                out.write("\"" + estado.identificador + "\"");
+            }
+            out.write(";");
+            out.newLine();
+
+            // Escribir las definiciones de las aristas
+            for (Estado estado1 : automata.estados) {
+                for (Character clave : estado1.transiciones.keySet()) {
+                    ArrayList<Estado> valores = estado1.transiciones.get(clave);
+                    for (Estado estado2 : valores) {
+                        out.write("\"" + estado1.identificador + "\" -> \"" + estado2.identificador + "\"");
+                        if (clave == ' ') {
+                            out.write(" [label = \"" + "eps" + "\"];");
+                        } else {
+                            out.write(" [label = \"" + clave + "\"];");
+                        }
+                        out.newLine();
+                    }
+                }
+            }
+
+            // Escribir la última línea del archivo
+            out.write("}");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

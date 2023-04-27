@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Stack;
 
@@ -7,9 +8,12 @@ public class ProcesadorER {
     // que sea mas facil de operar
 
     String expresionProcesada;
+    ArrayList<String> lenguaje;
 
     public ProcesadorER(String expresion) {
+        lenguaje = new ArrayList<>();
         expresionProcesada = convertirExpresion(expresion);
+
     }
 
     private String convertirExpresion(String expresion) {
@@ -19,6 +23,7 @@ public class ProcesadorER {
 
         for (char caracter : expresion.toCharArray()) {
             if (Character.isLetterOrDigit(caracter)) {
+                lenguaje.add(String.valueOf(caracter));
                 postfijada += caracter;
             } else if (caracter == '(') {
                 pila.push(caracter);

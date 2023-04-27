@@ -7,7 +7,7 @@ public class ProcessBuilderDemo {
         String[] list = { "cmd.exe", "/c", "dot -Tjpg automata1.dot > dfa.jpg" };
         var processBuilder = new ProcessBuilder();
         processBuilder.directory(new File(
-                "C:\\Users\\lofte\\OneDrive\\Escritorio\\Archivos\\UBB\\RAMOS\\FUNDAMENTOS\\Tarea 1\\ER-AFND-AFD-1\\src"));
+                "C:\\Users\\josei\\IdeaProjects\\Tarea 1 fundamentos de la ciencias de la computacion\\src"));
         processBuilder.command(list);
         try {
             var process = processBuilder.start();
