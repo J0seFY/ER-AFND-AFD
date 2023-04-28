@@ -1,3 +1,14 @@
+/*
+
+Integrantes:
+- Diego Arteaga Mendoza
+- Christian Diaz Reyes
+- José Fuentes Yáñez
+
+Referencias obtenidas desde: https://github.com/maticou/ER-to-AFND-to-AFD
+
+*/
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -33,18 +44,19 @@ public class Estado {
         }
     }
 
-    void verificar_estado_final(){
-        for(Estado estado : this.estados){
-            if(estado.fin == true){
+    void verificar_estado_final() {
+        for (Estado estado : this.estados) {
+            if (estado.fin == true) {
                 this.fin = true;
             }
         }
     }
 
-    void imprimir_transiciones(){
+    void imprimir_transiciones() {
         for (Character i : transiciones.keySet()) {
-            for(Estado estado: transiciones.get(i)){
-                System.out.println("{"+" q"+ this.identificador+ ", " + i + "," + " q" +estado.identificador + " }");
+            for (Estado estado : transiciones.get(i)) {
+                System.out
+                        .println("{" + " q" + this.identificador + ", " + i + "," + " q" + estado.identificador + " }");
             }
         }
     }

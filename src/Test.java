@@ -1,3 +1,14 @@
+/*
+
+Integrantes:
+- Diego Arteaga Mendoza
+- Christian Diaz Reyes
+- José Fuentes Yáñez
+
+Referencias obtenidas desde: https://github.com/maticou/ER-to-AFND-to-AFD
+
+*/
+
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -17,12 +28,11 @@ public class Test {
         AFND transformarER_AFND = new AFND(expresionProcesada.getExpresionProcesada());
         Automata afnd = transformarER_AFND.automata;
 
-        AFD transformarAFND_AFD = new AFD(afnd,expresionProcesada.lenguaje);
+        AFD transformarAFND_AFD = new AFD(afnd, expresionProcesada.lenguaje);
 
         ProcessBuilderDemo.getInstance().make();
         System.out.println("");
         ProcessBuilderDemo2.getInstance().make();
-
 
     }
 
