@@ -43,7 +43,7 @@ public class AFD {
         estado_inicial.estados.addAll(pila_estados);
         pila_estados.clear();
 
-        //se agregan los estados creados prevamente a la lista de estados que representara nuestro AFD
+        //se agregan los estados creados previamente a la lista de estados que representara nuestro AFD
         this.listaEstados.add(estado_inicial);
         this.listaEstados.add(sumidero);
 
@@ -127,7 +127,7 @@ public class AFD {
 
             //si el estado tiene transiciones con el caracter especificado
             //se agrega a la lista de estados del AFD y a la pila para que se generen
-            // nuevos estados y trancisiones a traves de este nuevo estado.
+            // nuevos estados y transcisiones a traves de este nuevo estado.
             if(transiciones.isEmpty() == false){
                 Estado nuevo_estado = new Estado(0, false, false);
                 nuevo_estado.estados.addAll(transiciones);
