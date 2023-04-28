@@ -190,7 +190,7 @@ public class AFD {
             this.pila_estados.push(estado);
 
             if(estado.transiciones.get(' ') != null){
-                for(Estado s: estado.transiciones.get('_')){
+                for(Estado s: estado.transiciones.get(' ')){
                     transicion_epsilon(s);
                 }
             }
@@ -249,6 +249,4 @@ public class AFD {
             e.printStackTrace();
         }
     }
-
-    //problema al realizar la ultima transicion
 }

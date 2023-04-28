@@ -12,18 +12,6 @@ public class AFND {
     static Stack<Automata> stack = new Stack<>();
     String expresionRegular;
 
-    // instancia
-    private static AFND instance = null;
-
-    public static AFND getInstance() {
-        if (instance == null) {
-            instance = new AFND();
-        }
-        return instance;
-    }
-
-    public AFND() {
-    }
 
     public AFND(String expresionRegular) {
         this.expresionRegular = expresionRegular;
