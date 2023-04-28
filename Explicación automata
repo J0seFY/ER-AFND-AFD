@@ -1,8 +1,0 @@
-La imagen anterior representa un autómata finito determinista o llamado por su sigla “AFD”.
-Para explicar el contexto del problema, se necesitaba construir un autómata que describa el funcionamiento de una máquina de expendedora de bebidas, 
-en la que se crearon 8 estados que representan el dinero acumulado cuando se están ingresando las monedas.
-Cada estado posee una transición con cada una de las monedas que acepta la maquina (25, 50 y 100). Cuando se llega a 100 (dinero acumulado 100), 
-se crean 3 estados que son C25, C50 y C75 que representan los casos en los que se necesitan dar cambio.
-Para completar las transiciones y que sea un AFD desde los estados que representan los casos que necesitan vuelto, se generan transiciones 
-hacia los demás estados que entregan vuelto o en algunos casos se vuelve hacia atrás, específicamente hacia los estados que representan el 
-dinero acumulado (25, 50, 100 por ejemplo).
